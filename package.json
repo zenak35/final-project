@@ -1,0 +1,30 @@
+{
+  "name": "final-project-tk1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "cookie-session": "^2.0.0-beta.3",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "gulp": "^4.0.0",
+    "gulp-zip": "^4.2.0",
+    "mockgoose": "^7.3.5",
+    "mongoose": "^5.4.18",
+    "nodemon": "^1.18.4",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "router": "^1.3.3",
+    "spotify-web-api-node": "^4.0.0",
+    "supervisor": "^0.12.0",
+    "zip": "^1.2.0"
+  }
+}
