@@ -1,30 +1,28 @@
 {
-  "name": "final-project-tk1",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "lyricfinder",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cookie-parser": "^1.4.4",
-    "cookie-session": "^2.0.0-beta.3",
-    "cors": "^2.8.5",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "gulp": "^4.0.0",
-    "gulp-zip": "^4.2.0",
-    "mockgoose": "^7.3.5",
-    "mongoose": "^5.4.18",
-    "nodemon": "^1.18.4",
-    "querystring": "^0.2.0",
-    "request": "^2.88.0",
-    "router": "^1.3.3",
-    "spotify-web-api-node": "^4.0.0",
-    "supervisor": "^0.12.0",
-    "zip": "^1.2.0"
+    "axios": "^0.18.0",
+    "firebase": "^5.10.0",
+    "moment": "^2.22.2",
+    "react": "^16.8.3",
+    "react-art": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-moment": "^0.7.9",
+    "react-native": "^0.59.5",
+    "react-native-firebase": "^5.3.1",
+    "react-native-web": "^0.11.2",
+    "react-native-youtube": "^1.1.0",
+    "react-navigator": "0.0.0-0",
+    "react-router-dom": "^4.3.1",
+    "react-router-native": "^5.0.0",
+    "react-scripts": "^1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
