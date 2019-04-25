@@ -1,0 +1,26 @@
+{
+    "presets": [
+        "babel-preset-expo",
+        "stage-0",
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                "transform-object-rest-spread",
+                "transform-react-jsx-source"
+            ]
+        }
+    },
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "alias": {
+                    "^react-native$": "react-native-web"
+                }
+            }
+        ]
+    ]
+}
