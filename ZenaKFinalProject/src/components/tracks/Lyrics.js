@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Spinner from "../layout/Spinner";
 import Moment from "react-moment";
 import YTVid from "./YTVid";
-import Spinner from "../layout/spinner";
 
 class Lyrics extends Component {
   state = {
@@ -22,18 +22,19 @@ class Lyrics extends Component {
     }
   };
 
+
   componentDidMount() {
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${
-        this.props.match.params.id
+        this.props.track.track_id
         }&apikey=${process.env.REACT_APP_MM_KEY}`
       )
       .then(res => {
         this.setState({ lyrics: res.data.message.body.lyrics });
         return axios.get(
           `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${
-          this.props.match.params.id
+          this.props.track.track_id
           }&apikey=${process.env.REACT_APP_MM_KEY}`
         );
       })
@@ -78,16 +79,12 @@ class Lyrics extends Component {
     } else {
       return (
         <React.Fragment>
-          <Link to="/" className="btn btn-dark btn-sm mb-4">
-            Go Back
-          </Link>
           <div className="card">
             <h5 className="card-header">
               {track.track_name} by{" "}
               <span className="text-secondary">{track.artist_name}</span>
             </h5>
             <div className="card-body">
-              {console.log(ytSearchName)}
               <p className="card-text">
                 {lyrics.lyrics_body.substring(
                   0,
@@ -123,7 +120,13 @@ class Lyrics extends Component {
             </li>
             <li className="list-group-item">
               <strong>Youtube Video</strong>:{" "}
-              <YTVid queryString={ytSearchName} />
+              {
+                (correct_artist_name === "") ?
+                  (<Spinner />)
+                  :
+                  (
+                    <YTVid queryString={ytSearchName} />)
+              }
             </li>
           </ul>
         </React.Fragment>

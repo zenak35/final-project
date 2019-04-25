@@ -1,30 +1,60 @@
 import React, { Component } from "react";
 import Tracks from "../tracks/Tracks";
 import Search from "../tracks/Search";
-import Landing from "./Landing";
+// import Landing from "./Landing";
 import Login from "../accounts/Login";
-import firebase, {
-  auth,
-  provider
-} from "/Users/zenakipkenda/Documents/Documents/CIS197/lyricfinder/src/firebase.js";
+import SignUp from "../accounts/SignUp";
+import { Consumer } from '../../context';
+import { withRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import Navbar from "./Navbar";
+import Firebase from '../../Firebase'
+const db = Firebase.database;
+const usersTable = db.ref('users')
 
 class Index extends Component {
   state = { currentUser: null };
-  checkUserNull = () => {
-    if (this.state.currentUser) {
-      return <Search />, <Tracks />;
-    } else {
-      return <Landing />;
+  newUser = this.props.newuser
+  checkNewUser = (user) => {
+    if (this.props.newuser) {
+      const newUser = usersTable.push()
+      newUser.set({
+        auth_id: Firebase.auth.currentUser.uid,
+        playlists: []
+      })
     }
-  };
-  componentDidMount() {
-    const { currentUser } = auth;
-    this.setState({ currentUser });
   }
+
   render() {
-    const { currentUser } = this.state;
-    return <React.Fragment>{this.checkUserNull()}</React.Fragment>;
+    return (
+      <Consumer>
+        {value => {
+          const { fb_context } = value
+          if (fb_context.isUserSignedIn) {
+            if (this.newUser) {
+              this.checkNewUser(fb_context.currentUser)
+              //this.newUser = null
+              //this.props.history.push("/dashboard");
+            }
+            return (<React.Fragment>
+              <Search />
+              <Tracks />
+            </React.Fragment>)
+          }
+          else {
+            return (<React.Fragment>
+              <Navbar />
+            </React.Fragment>)
+          }
+        }
+        }
+      </Consumer>
+    )
   }
 }
 
-export default Index;
+export default withRouter(Index);

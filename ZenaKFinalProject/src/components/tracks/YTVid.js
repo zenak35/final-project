@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Spinner from "../layout/spinner";
+import Spinner from "../layout/Spinner";
 
 class YTVid extends Component {
   state = {
@@ -9,6 +9,8 @@ class YTVid extends Component {
     videos: [],
     selectedVid: null
   };
+
+  apiKey = process.env.YTVIDKEY
 
   componentDidMount() {
     axios
@@ -18,7 +20,7 @@ class YTVid extends Component {
           part: "snippet",
           maxResults: 2,
           type: "video",
-          key: "AIzaSyDkeJKEVueGFIxIffzQxRIkDF5Duuou08c"
+          key: "AIzaSyBKrocsjVKTCTAmoda9jMg4JR2RCq-J8-c"
         }
       })
       .get("/search", {
@@ -27,7 +29,6 @@ class YTVid extends Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.setState({
           selectedVid: res.data.items[0]
         });
@@ -47,7 +48,7 @@ class YTVid extends Component {
           <iframe src={videoSrc} allowFullScreen title="Video player" />
         </div>
         <div className="ui segment">
-          <h4 className="ui header">{selectedVid.snippet.title}</h4>
+          <h5 className="ui header">{selectedVid.snippet.title}</h5>
         </div>
       </React.Fragment>
     );
